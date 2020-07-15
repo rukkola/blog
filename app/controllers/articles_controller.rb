@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
    @article = Article.new(article_params)
       if @article.valid?
         @article.save
+        redirect_to @article # автоматич определяет куда редиректить/ добавляет номер страницы
       else
         render action: 'new'
       end  
