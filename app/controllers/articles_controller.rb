@@ -14,13 +14,25 @@ class ArticlesController < ApplicationController
   def create
 
    @article = Article.new(article_params)
-      if @article.valid?
-        @article.save
+      if @article.save
         redirect_to @article # автоматич определяет куда редиректить/ добавляет номер страницы
       else
         render action: 'new'
       end  
 #      render plain: params[:article].inspect
+    end
+
+    def edit
+      @article = Article.find(params[:id])     
+    end
+
+    def update
+      @article = Article.find(params[:id])     
+      if @article.update(article_params)
+        redirect_to @article # автоматич определяет куда редиректить/ добавляет номер страницы
+      else
+        render action: 'edit'
+      end  
     end
 
  private
