@@ -14,26 +14,33 @@ class ArticlesController < ApplicationController
   def create
 
    @article = Article.new(article_params)
-      if @article.save
-        redirect_to @article # автоматич определяет куда редиректить/ добавляет номер страницы
-      else
-        render action: 'new'
-      end  
+    if @article.save
+      redirect_to @article # автоматич определяет куда редиректить/ добавляет номер страницы
+    else
+      render action: 'new'
+    end  
 #      render plain: params[:article].inspect
-    end
+  end
 
-    def edit
+  def edit
       @article = Article.find(params[:id])     
-    end
+  end
 
-    def update
-      @article = Article.find(params[:id])     
-      if @article.update(article_params)
-        redirect_to @article # автоматич определяет куда редиректить/ добавляет номер страницы
-      else
-        render action: 'edit'
-      end  
-    end
+  def update
+    @article = Article.find(params[:id])     
+    if @article.update(article_params)
+      redirect_to @article # автоматич определяет куда редиректить/ добавляет номер страницы
+    else
+      render action: 'edit'
+    end  
+  end
+
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+
+    redirect_to articles_path # прерывает запрос
+  end
 
  private
 
