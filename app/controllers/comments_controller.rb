@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+
+  before_action :authenticate_user!, :only => [:create]
+
   def create
     @article = Article.find(params[:article_id]) # к чему обращаться можно увидеть в rake routes(article_id)
     @article.comments.create(comment_params) #  или так, но это не безопасно ({author: 'Mike', body: 'Helloy'})
