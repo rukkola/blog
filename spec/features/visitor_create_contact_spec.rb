@@ -1,8 +1,8 @@
-require "spec_helper"
+require "rails_helper"
 
-=begin
-feature "..." do 
-  scenario " " do
+feature "Contact creation" do 
+  scenario "allows acees to contacts page" do
+    visit '/contacts'
+    expect(page).to have_content 'Contact Us!'
   end 
 end
-=end
